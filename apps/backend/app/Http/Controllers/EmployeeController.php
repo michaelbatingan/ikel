@@ -15,7 +15,7 @@ class EmployeeController extends Controller
         //
         try {
             $employees = Employee::all();
-            return response()->json($employees);
+            return response()->json($employees, 200);
         } catch (\Exception $e) {
             return response()->json([
                 'message' => 'An error occurred while fetching employees.',
@@ -59,6 +59,8 @@ class EmployeeController extends Controller
     {
         //
         try {
+            $employee = Employee::findOrFail($id);
+            return response()->json($employee, 200);
         } catch (\Exception $e) {
             return response()->json([
                 'message' => 'An error occurred while fetching employee.',
@@ -75,6 +77,21 @@ class EmployeeController extends Controller
     {
         //
         try {
+            $employee = Employee::findOrFail($id);
+
+            $validatedData = $request->validate([
+                'last_name' => 'required|string|max:100',
+                'first_name' => 'required|string|max:100',
+                'email' => 'required|email|unique:employees',
+                'gender' => 'nullable|string|max:10',
+                'birthday' => 'nullable|date',
+                'date_hired' => 'required|date',
+                'salary' => 'nullable|numeric'
+            ]);
+
+            $employee->update($validatedData);
+
+            return response()->json($employee, 200);
         } catch (\Exception $e) {
             return response()->json([
                 'message' => 'An error occurred while updating employees.',
@@ -90,6 +107,13 @@ class EmployeeController extends Controller
     {
         //
         try {
+            $employee = Employee::findOrFail($id);
+            $employee->delete();
+
+            return response()->json([
+                'message' => 'Employee deleted successfully.',
+                'employee_id' => $id
+            ], 200);
         } catch (\Exception $e) {
             return response()->json([
                 'message' => 'An error occurred while deleting employees.',

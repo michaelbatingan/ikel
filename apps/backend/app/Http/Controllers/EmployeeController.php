@@ -15,7 +15,13 @@ class EmployeeController extends Controller
         //
         try {
             $employees = Employee::all();
-            return response()->json($employees, 200);
+            //select * from employees
+            $response = [
+                'success' => true,
+                'data' => $employees,
+                'message' => 'Employees fetched successfully.'
+            ];
+            return response()->json($response, 200);
         } catch (\Exception $e) {
             return response()->json([
                 'message' => 'An error occurred while fetching employees.',

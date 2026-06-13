@@ -38,15 +38,15 @@ class PensionerController extends Controller
         //
         try {
             $validatedData = $request->validate([
-                'serial_number' => 'required|string|max:10',
-                'control_number' => 'required|string|max:20',
+                'serial_number' => 'required|string|max:10|unique:pensioners',
+                'control_number' => 'required|string|max:20|unique:pensioners',
                 'first_name' => 'required|string|max:255',
                 'middle_name' => 'nullable|string|max:255',
                 'last_name' => 'required|string|max:255',
                 'pension_account' => 'required|string|max:20',
                 'rank' => 'nullable|string|max:20',
                 'bank_name' => 'required|string|max:50',
-                'amount_centavos' => 'required|bigInteger|default:0',
+                'amount_centavos' => 'required|numeric',
                 'retirement_date' => 'required|date',
             ]);
 
@@ -95,7 +95,7 @@ class PensionerController extends Controller
                 'pension_account' => 'required|string|max:20',
                 'rank' => 'nullable|string|max:20',
                 'bank_name' => 'required|string|max:50',
-                'amount_centavos' => 'required|bigInteger|default:0',
+                'amount_centavos' => 'required|numeric',
                 'retirement_date' => 'required|date',
             ]);
 

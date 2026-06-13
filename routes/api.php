@@ -19,10 +19,10 @@ Route::get('/employees/{id}', [\App\Http\Controllers\EmployeeController::class, 
 Route::put('/employees/{id}', [\App\Http\Controllers\EmployeeController::class, 'update']);
 Route::delete('/employees/{id}', [\App\Http\Controllers\EmployeeController::class, 'destroy']);
 
-//http://localhost:8000/api/pensioner
+//http://localhost:8000/api/pensioners
 Route::get('/pensioners', [\App\Http\Controllers\PensionerController::class, 'index']);
 Route::post('/pensioners', [\App\Http\Controllers\PensionerController::class, 'store']);
-//http://localhost:8000/api/pensioner/2
+//http://localhost:8000/api/pensioners/2
 Route::get('/pensioners/{id}', [\App\Http\Controllers\PensionerController::class, 'show']);
 Route::put('/pensioners/{id}', [\App\Http\Controllers\PensionerController::class, 'update']);
 Route::delete('/pensioners/{id}', [\App\Http\Controllers\PensionerController::class, 'destroy']);

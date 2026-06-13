@@ -14,3 +14,21 @@ Content-Type: application/json
    "date_hired": "2020-01-01",
    "salary": 50000
 }
+
+### GET http://localhost:8000/api/pensioners
+###
+POST http://localhost:8000/api/pensioners
+Content-Type: application/json 
+
+{
+   "serial_number": "SN123456",
+   "control_number": "CN654321",
+   "first_name": "Jane",
+   "middle_name": "A.",
+   "last_name": "Smith",
+   "pension_account": "PA987654321",
+   "rank": "Retired Colonel",
+   "bank_name": "Bank of Example",
+   "amount_centavos": 1500000,
+   "retirement_date": "2025-12-31"
+}
